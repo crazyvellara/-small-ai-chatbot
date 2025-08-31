@@ -1,0 +1,60 @@
+{
+  "entities": [
+    {
+      "name": "MOSDAC",
+      "type": "portal",
+      "relations": [
+        {
+          "relation": "provides",
+          "target": "Satellite Data"
+        },
+        {
+          "relation": "requires",
+          "target": "User Registration"
+        },
+        {
+          "relation": "contains",
+          "target": "FAQ Section"
+        }
+      ]
+    },
+    {
+      "name": "Satellite Data",
+      "type": "data_category",
+      "relations": [
+        {
+          "relation": "includes",
+          "target": "INSAT-3D"
+        },
+        {
+          "relation": "includes",
+          "target": "Ocean Temperature Maps"
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "type": "person",
+      "relations": [
+        {
+          "relation": "performs",
+          "target": "Registration"
+        },
+        {
+          "relation": "accesses",
+          "target": "MOSDAC"
+        }
+      ]
+    },
+    {
+      "name": "INSAT-3D",
+      "type": "satellite",
+      "relations": [
+        {
+          "relation": "provides",
+          "target": "Imagery Data"
+        }
+      ]
+    }
+  ]
+}

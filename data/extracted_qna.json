@@ -1,0 +1,30 @@
+[
+  {
+    "question": "What is MOSDAC?",
+    "answer": "MOSDAC (Meteorological and Oceanographic Satellite Data Archival Centre) is a data repository developed by SAC/ISRO. It provides satellite data related to weather, oceanography, and atmospheric science."
+  },
+  {
+    "question": "How can I download satellite data from MOSDAC?",
+    "answer": "To download satellite data from MOSDAC, users must register on the website. After logging in, data can be accessed from the 'Data Access' section."
+  },
+  {
+    "question": "Which web browsers are supported by MOSDAC?",
+    "answer": "MOSDAC works best with the latest versions of Google Chrome, Mozilla Firefox, and Microsoft Edge. Some features may not function properly on outdated browsers."
+  },
+  {
+    "question": "What kind of satellite data is available on MOSDAC?",
+    "answer": "MOSDAC provides data related to meteorology, oceanography, and atmospheric sciences. It includes products like satellite imagery, rainfall estimates, sea surface temperature, and more."
+  },
+  {
+    "question": "Is registration mandatory to access MOSDAC data?",
+    "answer": "Yes, users must register and log in to the MOSDAC portal to access and download satellite data and related products."
+  },
+  {
+  "question": "What is the spatial resolution of INSAT‑3D's visible and SWIR bands?",
+  "answer": "INSAT‑3D's visible and SWIR bands provide imagery at 1 km spatial resolution."
+},
+{
+  "question": "What are the resolutions of MWIR, TIR and water vapor bands on INSAT‑3D?",
+  "answer": "MWIR and TIR bands have 4 km resolution, and the water vapor (WV) band has 8 km resolution."
+}
+]

@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+.venv/
+
+# Gradio temp files
+.gradio/
+
+# FAISS / vector DB indexes
+faiss_index/
+vectorstore/
+
+# Environment variables
+.env
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+
