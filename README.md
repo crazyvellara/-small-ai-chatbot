@@ -95,4 +95,4 @@ Avoid running the project inside OneDrive to prevent Git object errors
 🟢 Author
 
 Ann Mariya Thomas – AI & Data Science Student
-Team: The Chaotic 4 (Adhisree P A, Anirudh, Asna A, Ann Mariya Thomas 
+Team: Four tech (Adhisree P A, Anirudh, Asna A, Ann Mariya Thomas)
