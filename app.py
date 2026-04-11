@@ -1,16 +1,15 @@
 import os
 import gradio as gr
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
-from langchain_openai import ChatOpenAI
-from langchain_community.embeddings import HuggingFaceEmbeddings
 
-PDF_FOLDER = "./pdfs"
+PDF_FOLDER = "./mosdac_pdfs"
 VECTOR_DB_PATH = "faiss_index"
 
-# ==== LOAD PDFs ====
+# Load PDFs
 def load_documents(pdf_folder):
     docs = []
     for file in os.listdir(pdf_folder):
@@ -19,11 +18,9 @@ def load_documents(pdf_folder):
             docs.extend(loader.load())
     return docs
 
-# ==== VECTOR STORE ====
+# Vector DB
 def get_vectorstore():
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
+    embeddings = OpenAIEmbeddings()
 
     if os.path.exists(VECTOR_DB_PATH):
         vectorstore = FAISS.load_local(
@@ -39,12 +36,8 @@ def get_vectorstore():
     return vectorstore
 
 
-# ==== LLM ====
 def get_llm():
-    return ChatOpenAI(
-        model="gpt-3.5-turbo",
-        temperature=0
-    )
+    return ChatOpenAI(model="gpt-3.5-turbo")
 
 
 prompt_template = """
@@ -56,12 +49,12 @@ Context:
 Question:
 {question}
 
-Answer in a clear and concise way. If the answer is not in the context, say "I don't know based on the provided documents."
+Answer clearly. If not found in context say "I don't know based on the documents."
 """
 
 PROMPT = PromptTemplate(
     template=prompt_template,
-    input_variables=["context", "question"]
+    input_variables=["context","question"]
 )
 
 
@@ -73,7 +66,7 @@ def get_qa_chain():
         llm=llm,
         retriever=vectorstore.as_retriever(),
         chain_type="stuff",
-        chain_type_kwargs={"prompt": PROMPT}
+        chain_type_kwargs={"prompt":PROMPT}
     )
 
     return qa_chain
@@ -82,17 +75,16 @@ def get_qa_chain():
 qa_chain = get_qa_chain()
 
 
-def chatbot(message, history):
-    response = qa_chain.run(message)
-    return response
+def chatbot(message,history):
+    return qa_chain.run(message)
 
 
 with gr.Blocks() as demo:
-    gr.Markdown("## 🚀 MOSDAC BOT — Cloud Version")
-    gr.ChatInterface(fn=chatbot, chatbot=gr.Chatbot(height=400))
+    gr.Markdown("## 🚀 MOSDAC BOT")
+    gr.ChatInterface(fn=chatbot)
 
 
 demo.launch(
     server_name="0.0.0.0",
-    server_port=int(os.environ.get("PORT", 10000))
+    server_port=int(os.environ.get("PORT",10000))
 )
