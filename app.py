@@ -76,7 +76,12 @@ with gr.Blocks() as demo:
     chatbot_ui = gr.ChatInterface(fn=chatbot, chatbot=gr.Chatbot(height=400))
 
 print("🚀 Chatbot running at http://localhost:7860")
-demo.launch()
+import os
+
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=int(os.environ.get("PORT", 10000))
+)
 
 
 
